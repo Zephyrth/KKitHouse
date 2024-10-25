@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.dam.Views.MainFrame">
+  <grid id="27dc6" binding="mainFrame" layout-manager="FormLayout">
+    <rowspec value="center:max(d;10px):noGrow"/>
+    <rowspec value="top:790px:noGrow"/>
+    <rowspec value="center:d:grow"/>
+    <colspec value="fill:10px:noGrow"/>
+    <colspec value="left:125px:noGrow"/>
+    <colspec value="fill:1115px:noGrow"/>
+    <constraints>
+      <xy x="20" y="20" width="1250" height="800"/>
+    </constraints>
+    <properties>
+      <minimumSize width="1250" height="800"/>
+      <preferredSize width="1250" height="800"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <vspacer id="9548d">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="c7293">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+      </vspacer>
+      <hspacer id="b5239">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false"/>
+        </constraints>
+      </hspacer>
+      <grid id="b11c0" binding="containerButton" layout-manager="FlowLayout" hgap="5" vgap="30" flow-align="1">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms top="250" left="0" bottom="350" right="0" defaultalign-horz="false" defaultalign-vert="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3a248" class="javax.swing.JButton" binding="btn_inicio">
+            <constraints/>
+            <properties>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <component id="eafe9" class="javax.swing.JButton" binding="btn_create">
+            <constraints/>
+            <properties>
+              <text value="Button"/>
+            </properties>
+          </component>
+          <component id="d7e39" class="javax.swing.JButton" binding="btn_table">
+            <constraints/>
+            <properties>
+              <text value="Button"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d1740" binding="containerPanels" layout-manager="CardLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>
