@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-import static org.dam.Controllers.MainFrameController.NAVIGATE_INICIO;
+import static org.dam.Controllers.MainFrameController.*;
 
-public class MainFrame extends JFrame  {
+public class MainFrame extends JFrame {
     private JPanel mainFrame;
     private JButton btn_inicio;
     private JButton btn_create;
@@ -15,10 +15,14 @@ public class MainFrame extends JFrame  {
     private JPanel containerPanels;
     private CardLayout navegador;
     private InitPanel initPanel;
+    private FormPanel formPanel;
+
     public MainFrame() {
         initWindow();
         addPanels();
+        setCommands();
     }
+
     private void addPanels() {
         //Obtener layout para navegar
         navegador = (CardLayout) containerPanels.getLayout();
@@ -26,8 +30,13 @@ public class MainFrame extends JFrame  {
         initPanel = new InitPanel();
         initPanel.setBackground("/KKITHOUSE.png");
 
-        containerPanels.add(initPanel, "INICIO");
+        formPanel = new FormPanel();
+        formPanel.setBackground("/backgroundForm.png");
 
+
+
+        containerPanels.add(initPanel, INICIO);
+        containerPanels.add(formPanel, CREATE);
     }
 
     public void initWindow() {
@@ -62,9 +71,13 @@ public class MainFrame extends JFrame  {
 
     }
 
+    public FormPanel getFormPanel() {
+        return formPanel;
+    }
 
     public void initComponents() {
         btn_inicio.setActionCommand(NAVIGATE_INICIO);
+        btn_create.setActionCommand(NAVIGATE_CREATE);
 
     }
 

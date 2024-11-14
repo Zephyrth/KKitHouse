@@ -14,10 +14,7 @@ public class MarcaModel {
 
     @Override
     public String toString() {
-        return "MarcaModel{" +
-                "id_Marca=" + id_Marca +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return nombre;
     }
 
     public int getId_Marca() {

@@ -150,6 +150,44 @@ public class XMLManager implements Exceptions {
         return null;
     }
 
+    public static ArrayList<MarcaModel> getMarcaModelsForCombo() throws Exception {
+        Document document = loadOrCreateXML();
+        ArrayList<MarcaModel> marcasModels = new ArrayList<>();
+        if (document == null) {
+            throw new Exception(ERROR1);
+        }
+        try {
+            NodeList marcaNodeList = document.getElementsByTagName("Marca");
+            for (int i = 0; i < marcaNodeList.getLength(); i++) {
+                Element MarcaElement = (Element) marcaNodeList.item(i);
+                marcasModels.add(new MarcaModel(Integer.parseInt(MarcaElement.getAttribute("id")), MarcaElement.getAttribute("nombre")));
+            }
+            return marcasModels;
+        } catch (Exception e) {
+            throw new Exception("Error al encontrar la marca");
+        }
+    }
+
+    public static ArrayList<MaterialModel> getMarcaMaterialForCombo() throws Exception {
+        Document document = loadOrCreateXML();
+        ArrayList<MaterialModel> materialModels = new ArrayList<>();
+        if (document == null) {
+            throw new Exception(ERROR1);
+        }
+        try {
+            NodeList marcaNodeList = document.getElementsByTagName("Material");
+            for (int i = 0; i < marcaNodeList.getLength(); i++) {
+                Element materialElement = (Element) marcaNodeList.item(i);
+                materialModels.add(new MaterialModel(Integer.valueOf(materialElement.getAttribute("id")),
+                        materialElement.getAttribute("nombre"),
+                        Double.parseDouble(materialElement.getAttribute("precio"))));
+            }
+            return materialModels;
+        } catch (Exception e) {
+            throw new Exception("Error al encontrar la material");
+        }
+    }
+
     public static MaterialModel getMaterialModel(int id_material) throws Exception {
         Document document = loadOrCreateXML();
         if (document == null) {
@@ -182,11 +220,11 @@ public class XMLManager implements Exceptions {
         }
         MarcaModel marcaModel = getMarcaModel(muebleModel.getMarcaModel().getId_Marca());
         if (marcaModel == null) {
-            throw new Exception(ERROR3+ "La marca: "+ muebleModel.getMarcaModel().getNombre() + " no existe.");
+            throw new Exception(ERROR3 + "La marca: " + muebleModel.getMarcaModel().getNombre() + " no existe.");
         }
         MaterialModel materialModel = getMaterialModel(muebleModel.getMaterialModel().getId_Material());
         if (materialModel == null) {
-            throw new Exception(ERROR2+ "El material: " + muebleModel.getMaterialModel().getNombre() + " no existe.");
+            throw new Exception(ERROR2 + "El material: " + muebleModel.getMaterialModel().getNombre() + " no existe.");
         }
 
         try {
@@ -214,13 +252,14 @@ public class XMLManager implements Exceptions {
         }
         throw new Exception(ERROR12);
     }
+
     public static boolean removeMuebleById(String id, String name) throws Exception {
         Document document = XMLService.loadOrCreateXML();
         if (document == null) {
-            throw new Exception("2. No se encontro el document xml");
+            throw new Exception(ERROR1);
         }
         if (id == null && name == null) {
-            throw new Exception("1.Para la busqueda los Campos ID  o Nombre no deben estar vacios");
+            throw new Exception(ERROR13);
         }
         try {
             NodeList nodeList = document.getElementsByTagName("Mueble");

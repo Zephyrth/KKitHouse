@@ -28,11 +28,7 @@ public class MaterialModel {
 
     @Override
     public String toString() {
-        return "MaterialModel{" +
-                "id_Material=" + id_Material +
-                ", nombre='" + nombre + '\'' +
-                ", precio=" + precio +
-                '}';
+        return nombre;
     }
 
     public void setNombre(String nombre) {

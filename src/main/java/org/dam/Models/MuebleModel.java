@@ -11,6 +11,7 @@ public class MuebleModel {
     private MarcaModel marcaModel;
     private LocalDate date;
     private boolean is_Exterior;
+    private String imagenPath;
 
     public MuebleModel() {
     }

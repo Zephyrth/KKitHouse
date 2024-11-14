@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainFrameController implements ActionListener {
-    public static final String INICIO = "INICIO", NAVIGATE_INICIO = "NAVIGATE_INICIO";
+    public static final String INICIO = "INICIO", CREATE = "CREATE", NAVIGATE_INICIO = "NAVIGATE_INICIO", NAVIGATE_CREATE = "NAVIGATE_CREATE";
     private MainFrame mainFrame;
 
     public MainFrameController(MainFrame mainFrame) {
@@ -24,6 +24,10 @@ public class MainFrameController implements ActionListener {
         switch (command) {
             case NAVIGATE_INICIO: {
                 handleNavigateTo(INICIO);
+                break;
+            }
+            case NAVIGATE_CREATE: {
+                handleNavigateTo(CREATE);
                 break;
             }
         }

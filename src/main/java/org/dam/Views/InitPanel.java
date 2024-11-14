@@ -2,6 +2,7 @@ package org.dam.Views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class InitPanel extends JPanel {
     private JPanel mainPanel;
@@ -22,5 +23,12 @@ public class InitPanel extends JPanel {
     public void setBackground(String path) {
         background = new ImageIcon(getClass().getResource(path)).getImage();
         repaint();
+    }
+    private void setCommand() {
+
+    }
+
+    public void addActionListeners(ActionListener listener) {
+
     }
 }

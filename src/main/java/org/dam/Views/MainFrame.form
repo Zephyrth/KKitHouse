@@ -45,19 +45,19 @@
           <component id="3a248" class="javax.swing.JButton" binding="btn_inicio">
             <constraints/>
             <properties>
-              <text value="Button"/>
+              <text value="INICIO"/>
             </properties>
           </component>
           <component id="eafe9" class="javax.swing.JButton" binding="btn_create">
             <constraints/>
             <properties>
-              <text value="Button"/>
+              <text value="CREAR"/>
             </properties>
           </component>
           <component id="d7e39" class="javax.swing.JButton" binding="btn_table">
             <constraints/>
             <properties>
-              <text value="Button"/>
+              <text value="INVENTARIO"/>
             </properties>
           </component>
         </children>
@@ -71,6 +71,12 @@
         <border type="none"/>
         <children/>
       </grid>
+      <hspacer id="c467f">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false"/>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>

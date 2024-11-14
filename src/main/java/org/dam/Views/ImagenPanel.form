@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.dam.Views.ImagenPanel">
+  <grid id="27dc6" binding="mainPanel" layout-manager="FormLayout">
+    <rowspec value="center:10px:grow"/>
+    <rowspec value="top:250px:noGrow"/>
+    <rowspec value="center:39px:noGrow"/>
+    <colspec value="fill:10px:grow"/>
+    <colspec value="left:338px:noGrow"/>
+    <colspec value="left:4dlu:noGrow"/>
+    <colspec value="fill:max(d;4px):noGrow"/>
+    <constraints>
+      <xy x="20" y="20" width="360" height="300"/>
+    </constraints>
+    <properties>
+      <background color="-5267062"/>
+      <maximumSize width="360" height="300"/>
+      <minimumSize width="360" height="300"/>
+      <preferredSize width="360" height="300"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <hspacer id="fc846">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="e9863">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="47ba2">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="684b2">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+      </vspacer>
+      <grid id="78b64" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+        </constraints>
+        <properties>
+          <background color="-5267062"/>
+          <foreground color="-922881"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="23224" class="javax.swing.JButton" binding="btn_seleccionar">
+            <constraints/>
+            <properties>
+              <text value="SELECCIONAR"/>
+            </properties>
+          </component>
+          <component id="88a2f" class="javax.swing.JButton" binding="btn_clear">
+            <constraints/>
+            <properties>
+              <text value="CLEAR"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="8dc1a" class="javax.swing.JLabel" binding="lb_img">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
