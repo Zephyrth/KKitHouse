@@ -2,6 +2,7 @@ package org.dam.service;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +14,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.InputStream;
 
 
 public class XMLService {
@@ -155,7 +157,16 @@ public class XMLService {
             rootElement.appendChild(marcasElement);
 
             // Añadir el nodo principal al documento
-            newDocument.appendChild(rootElement);
+            InputStream inputStream = XMLService.class.getResourceAsStream("/xmlBase.xml");
+            if (inputStream != null) {
+                if (importXMLContent(inputStream, newDocument)) {
+                    System.out.println("Contenido XML importado correctamente desde: xmlBase.xml");
+                } else {
+                    System.err.println("Error al importar contenido XML");
+                }
+            } else {
+                System.err.println("El archivo xmlBase.xml no se encontró en resources.");
+            }
 
             // Crear un Transformer para escribir el documento XML en el archivo
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -177,6 +188,23 @@ public class XMLService {
     // Método que devuelve la ruta completa del archivo
     public static String getFilePath(String fileName) {
         return System.getProperty("user.home") + "/" + PROJECT_NAME + "/" + fileName;
+    }
+
+    public static boolean importXMLContent(InputStream inputStream, Document targetDocument) {
+        try {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document sourceDocument = dBuilder.parse(inputStream);
+
+            Element rootElement = sourceDocument.getDocumentElement();
+            Node importedNode = targetDocument.importNode(rootElement, true);
+            targetDocument.getDocumentElement().appendChild(importedNode);
+
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al importar contenido XML: " + e.getMessage());
+            return false;
+        }
     }
 
 }
