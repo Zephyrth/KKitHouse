@@ -58,7 +58,7 @@ public class FileUtils {
         return imagenReescalada;
     }
     // Método estático para abrir el selector de archivos y guardar la imagen reescalada
-    public static String guardarImagen(String rutaImagen) {
+    public static String guardarImagen(String rutaImagen,String nombre) {
 
         String path = System.getProperty("user.home") + "\\" + PROJECT_NAME + "\\images";
         File carpetaDestino = new File(path);
@@ -68,7 +68,7 @@ public class FileUtils {
 
         // Crea el archivo de destino con el mismo nombre que el original
         File imagenOrigen = new File(rutaImagen);
-        File imagenDestino = new File(carpetaDestino, imagenOrigen.getName());
+        File imagenDestino = new File(carpetaDestino, nombre+".png");
 
         try {
             // Reescalar la imagen a 200x200

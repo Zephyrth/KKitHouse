@@ -63,8 +63,17 @@ public class FormPanel extends JPanel {
         this.lb_warning.setText(warning);
     }
 
-    public MuebleModel getMueble() {
+    public MuebleModel getMueble() throws Exception {
         MuebleModel mueble = new MuebleModel();
+        if (tx_idMueble.getText().toString().equals("")
+                || tx_nombre.getText().toString().equals("")
+                || tx_cantidad.getText().toString().equals("")
+                || dp_fecha.getText().toString().equals("")
+                || list_material.getSelectedIndex() == -1) {
+            throw new Exception("NO DEJE NINGÚN CAMPO VACIO");
+        } else if (tx_idMueble.getText().toString().length() > 7) {
+            throw new Exception("EL ID NO DEBE SER MAS DE 7 CARACTERES");
+        }
         mueble.setId_Mueble(Integer.parseInt(tx_idMueble.getText()));
         mueble.setNombre(tx_nombre.getText());
         mueble.setPrecio(Double.parseDouble(tx_precio.getText()));
@@ -126,6 +135,15 @@ public class FormPanel extends JPanel {
     public void initComponents() {
         tx_idMueble.setName("idMueble");
         tx_nombre.setName("Name");
+        tx_precio.setText("500");
+        sl_precio.setMaximum(1000);
+        sl_precio.setMinimum(0);
+        sl_precio.setValue(500);
+        tx_idMueble.setText("");
+        tx_nombre.setText("");
+        tx_cantidad.setText("");
+        dp_fecha.setDate(null);
+
 
     }
 

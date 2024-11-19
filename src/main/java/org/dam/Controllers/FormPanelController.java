@@ -1,6 +1,7 @@
 package org.dam.Controllers;
 
 import org.dam.Models.MuebleModel;
+import org.dam.Utils.FileUtils;
 import org.dam.Utils.JTextFieldBorderColorUtil;
 import org.dam.Views.FormPanel;
 import org.dam.XML.XMLManager;
@@ -8,6 +9,9 @@ import org.dam.XML.XMLManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import static org.dam.XML.Exceptions.ERROR9;
+import static org.dam.XML.XMLManager.getMueble;
 
 
 public class FormPanelController implements ActionListener, FocusListener, KeyListener {
@@ -21,10 +25,31 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
     }
 
     private void handleCreateMueble() {
+
         try {
-            XMLManager.createMueble(formPanel.getMueble());
+
+            if (XMLManager.getMueble(formPanel.getMueble().getId_Mueble()) != null) {
+                throw new Exception(ERROR9);
+            }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            formPanel.setLb_warning(e.getMessage());
+            return;
+        }
+
+        try {
+            String rutaImagen;
+            if (!formPanel.getImagenPanel().getRutaImagenOriginal().equals("src/images/default.png")) {
+                rutaImagen = FileUtils.guardarImagen(formPanel.getImagenPanel().getRutaImagenOriginal(),
+                        String.valueOf(formPanel.getMueble().getId_Mueble()));
+            } else {
+                rutaImagen = formPanel.getImagenPanel().getRutaImagenOriginal();
+            }
+            if (rutaImagen != null) {
+                XMLManager.createMueble(formPanel.getMueble());
+            }
+
+        } catch (Exception e) {
+            formPanel.setLb_warning(e.getMessage());
         }
 
     }
@@ -44,15 +69,18 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
         }
         if (((JTextField) source).getName().equalsIgnoreCase("idMueble") && !((JTextField) source).getText().equalsIgnoreCase("")) {
             try {
-                MuebleModel muebleModel = XMLManager.getMueble(Integer.valueOf(((JTextField) source).getText().toString()));
+                MuebleModel muebleModel = getMueble(Integer.valueOf(((JTextField) source).getText().toString()));
                 if (muebleModel != null) {
                     JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.red);
                     formPanel.setLb_warning("La id : " + ((JTextField) source).getText() + " ya existe.");
                 } else {
                     JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
+                    formPanel.setLb_warning("");
                 }
+            } catch (NumberFormatException e) {
+                formPanel.setLb_warning("La id: " + ((JTextField) source).getText() + " supera los 7 digitos.");
             } catch (Exception ex) {
-                throw new RuntimeException(ex);
+                formPanel.setLb_warning(ex.getMessage());
             }
         }
     }
@@ -66,6 +94,11 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
         }
     }
 
+    private void clearFormPanel() {
+        formPanel.setLb_warning("");
+        formPanel.initComponents();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -73,6 +106,10 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
             case CREAR:
                 handleCreateMueble();
                 break;
+            case LIMPIAR: {
+                clearFormPanel();
+                break;
+            }
         }
     }
 
@@ -80,6 +117,7 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
     public void focusGained(FocusEvent e) {
         handleGainFocus(e);
     }
+
     @Override
     public void focusLost(FocusEvent e) {
         handleLostFocus(e);
@@ -88,7 +126,7 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
     @Override
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
-            
+
         if (!Character.isDigit(c)) {
             e.consume();
         }
