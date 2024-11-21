@@ -16,11 +16,20 @@ public class MainFrame extends JFrame {
     private CardLayout navegador;
     private InitPanel initPanel;
     private FormPanel formPanel;
+    private QueryPanel queryPanel;
 
     public MainFrame() {
         initWindow();
         addPanels();
         setCommands();
+    }
+
+    public QueryPanel getQueryPanel() {
+        return queryPanel;
+    }
+
+    public void setQueryPanel(QueryPanel queryPanel) {
+        this.queryPanel = queryPanel;
     }
 
     private void addPanels() {
@@ -33,10 +42,12 @@ public class MainFrame extends JFrame {
         formPanel = new FormPanel();
         formPanel.setBackground("/backgroundForm.png");
 
+        queryPanel = new QueryPanel();
 
 
         containerPanels.add(initPanel, INICIO);
         containerPanels.add(formPanel, CREATE);
+        containerPanels.add(queryPanel, QUERY);
     }
 
     public void initWindow() {
@@ -78,6 +89,7 @@ public class MainFrame extends JFrame {
     public void initComponents() {
         btn_inicio.setActionCommand(NAVIGATE_INICIO);
         btn_create.setActionCommand(NAVIGATE_CREATE);
+        btn_table.setActionCommand(NAVIGATE_QUERY);
 
     }
 

@@ -45,11 +45,15 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
                 rutaImagen = formPanel.getImagenPanel().getRutaImagenOriginal();
             }
             if (rutaImagen != null) {
-                XMLManager.createMueble(formPanel.getMueble());
+                MuebleModel muebleModel = formPanel.getMueble();
+                muebleModel.setImagenPath(rutaImagen);
+                XMLManager.createMueble(muebleModel);
             }
 
         } catch (Exception e) {
+
             formPanel.setLb_warning(e.getMessage());
+            throw new RuntimeException(e);
         }
 
     }

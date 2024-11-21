@@ -47,7 +47,9 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="96d06" binding="productList" layout-manager="CardLayout" hgap="0" vgap="0">
+          <grid id="96d06" binding="productList" layout-manager="FormLayout">
+            <rowspec value="center:d:grow"/>
+            <colspec value="fill:d:grow"/>
             <constraints/>
             <properties/>
             <border type="none"/>

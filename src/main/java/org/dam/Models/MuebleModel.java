@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class MuebleModel {
 
-    private int id_Mueble,stock;
+    private int id_Mueble, stock;
     private double precio;
     private String nombre;
     private MaterialModel materialModel;
@@ -13,7 +13,16 @@ public class MuebleModel {
     private boolean is_Exterior;
     private String imagenPath;
 
+    public String getImagenPath() {
+        return imagenPath;
+    }
+
+    public void setImagenPath(String imagenPath) {
+        this.imagenPath = imagenPath;
+    }
+
     public MuebleModel() {
+
     }
 
     public MuebleModel(int stock, double precio, String nombre, MaterialModel materialModel, MarcaModel marcaModel, LocalDate date, boolean is_Exterior) {
@@ -35,6 +44,18 @@ public class MuebleModel {
         this.marcaModel = marcaModel;
         this.date = date;
         this.is_Exterior = is_Exterior;
+    }
+
+    public MuebleModel(int id_Mueble, int stock, double precio, String nombre, MaterialModel materialModel, MarcaModel marcaModel, LocalDate date, boolean is_Exterior, String imagenPath) {
+        this.id_Mueble = id_Mueble;
+        this.stock = stock;
+        this.precio = precio;
+        this.nombre = nombre;
+        this.materialModel = materialModel;
+        this.marcaModel = marcaModel;
+        this.date = date;
+        this.is_Exterior = is_Exterior;
+        this.imagenPath = imagenPath;
     }
 
     public int getId_Mueble() {
@@ -95,16 +116,7 @@ public class MuebleModel {
 
     @Override
     public String toString() {
-        return "MuebleModel{" +
-                "id_Mueble=" + id_Mueble +
-                ", stock=" + stock +
-                ", precio=" + precio +
-                ", nombre='" + nombre + '\'' +
-                ", materialModel=" + materialModel +
-                ", marcaModel=" + marcaModel +
-                ", date=" + date +
-                ", is_Exterior=" + is_Exterior +
-                '}';
+        return imagenPath;
     }
 
     public boolean isIs_Exterior() {

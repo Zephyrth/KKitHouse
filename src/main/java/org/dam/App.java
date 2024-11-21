@@ -4,10 +4,12 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import org.dam.Controllers.FormPanelController;
 import org.dam.Controllers.ImagenPanelController;
 import org.dam.Controllers.MainFrameController;
+import org.dam.Controllers.QueryPanelController;
 import org.dam.Models.MarcaModel;
 import org.dam.Models.MaterialModel;
 import org.dam.Models.MuebleModel;
 import org.dam.Views.MainFrame;
+import org.dam.Views.QueryPanel;
 import org.dam.XML.XMLManager;
 
 import javax.swing.*;
@@ -41,10 +43,12 @@ public class App {
         MainFrameController mainController = new MainFrameController(frame);
         FormPanelController formPanelController = new FormPanelController(frame.getFormPanel());
         ImagenPanelController imagenPanelController = new ImagenPanelController(frame.getFormPanel().getImagenPanel());
+        QueryPanelController queryPanelController = new QueryPanelController(frame.getQueryPanel());
 
         frame.addListeners(mainController);
         frame.getFormPanel().addActionListeners(formPanelController);
         frame.getFormPanel().getImagenPanel().addActionListeners(imagenPanelController);
+        frame.getQueryPanel().addListeners(queryPanelController);
 
 
         frame.showWindow();

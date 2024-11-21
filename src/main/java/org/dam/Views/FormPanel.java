@@ -10,12 +10,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 import static org.dam.Controllers.FormPanelController.CREAR;
 import static org.dam.Controllers.FormPanelController.LIMPIAR;
-import static org.dam.Controllers.MainFrameController.NAVIGATE_CREATE;
-import static org.dam.Controllers.MainFrameController.NAVIGATE_INICIO;
+
 
 public class FormPanel extends JPanel {
     private JPanel mainPanel;
@@ -51,13 +52,6 @@ public class FormPanel extends JPanel {
         initComponents();
     }
 
-    public JTextField getTx_idMueble() {
-        return tx_idMueble;
-    }
-
-    public JTextField getTx_nombre() {
-        return tx_nombre;
-    }
 
     public void setLb_warning(String warning) {
         this.lb_warning.setText(warning);
@@ -87,7 +81,6 @@ public class FormPanel extends JPanel {
         MaterialModel material;
         material = list_material.getSelectedValue();
         mueble.setMaterialModel(material);
-
         return mueble;
     }
 
@@ -103,6 +96,7 @@ public class FormPanel extends JPanel {
     private void setImagenPanel() {
         imagenPanel = new ImagenPanel();
         imagenPreviewPanel.add(imagenPanel);
+        imagenPanel.setRutaImagenOriginal("src/images/default.png");
     }
 
     public void setBackground(String path) {
@@ -143,6 +137,14 @@ public class FormPanel extends JPanel {
         tx_nombre.setText("");
         tx_cantidad.setText("");
         dp_fecha.setDate(null);
+        String rutaImagen = null;
+        try {
+            rutaImagen = URLDecoder.decode(getClass().getResource("/default.png").getPath(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        imagenPanel.setBackground(rutaImagen);
+        imagenPanel.setRutaImagenOriginal(rutaImagen);
 
 
     }

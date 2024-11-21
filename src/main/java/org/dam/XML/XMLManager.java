@@ -43,6 +43,7 @@ public class XMLManager implements Exceptions {
             muebleElement.setAttribute("id_marca", String.valueOf(muebleModel.getMarcaModel().getId_Marca()));
             muebleElement.setAttribute("isExterior", String.valueOf(muebleModel.isIs_Exterior()));
             muebleElement.setAttribute("fechaFabricacion", String.valueOf(muebleModel.getDate()));
+            muebleElement.setAttribute("imagenPath", muebleModel.getImagenPath());
             NodeList nodeList = document.getElementsByTagName("Muebles");
             if (nodeList.getLength() > 0) {
                 Element mueblesElement = (Element) nodeList.item(0);
@@ -129,6 +130,30 @@ public class XMLManager implements Exceptions {
         }
         return null;
 
+    }
+
+    public static ArrayList<MuebleModel> getMuebles() throws Exception {
+        ArrayList<MuebleModel> muebleModels = new ArrayList<>();
+        Document document = XMLService.loadOrCreateXML();
+        if (document == null) {
+            throw new Exception(ERROR1);
+        }
+
+        try {
+            NodeList muebleNodeList = document.getElementsByTagName("Mueble");
+            for (int i = 0; i < muebleNodeList.getLength(); i++) {
+                Element muebleElement = (Element) muebleNodeList.item(i);
+                muebleModels.add(new MuebleModel(Integer.parseInt(muebleElement.getAttribute("id")), Integer.parseInt(muebleElement.getAttribute("stock")),
+                        Double.parseDouble(muebleElement.getAttribute("precio")), muebleElement.getAttribute("nombre"),
+                        getMaterialModel(Integer.parseInt(muebleElement.getAttribute("id_material"))),
+                        getMarcaModel(Integer.parseInt(muebleElement.getAttribute("id_marca"))),
+                        LocalDate.parse(muebleElement.getAttribute("fechaFabricacion")),
+                        Boolean.parseBoolean(muebleElement.getAttribute("isExterior")), muebleElement.getAttribute("imagenPath")));
+            }
+            return muebleModels;
+        } catch (Exception e) {
+            throw new Exception(ERROR7);
+        }
     }
 
     public static MarcaModel getMarcaModel(int id_marca) throws Exception {
