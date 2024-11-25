@@ -224,7 +224,7 @@ public class XMLManager implements Exceptions {
                 Element MaterialElement = (Element) materialNodelist.item(i);
                 if (MaterialElement.getAttribute("id").equals(String.valueOf(id_material))) {
                     return new MaterialModel(id_material,
-                            MaterialElement.getAttribute("name"),
+                            MaterialElement.getAttribute("nombre"),
                             Double.parseDouble(MaterialElement.getAttribute("precio")));
                 }
             }

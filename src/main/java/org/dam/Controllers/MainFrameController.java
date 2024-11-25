@@ -5,6 +5,8 @@ import org.dam.Views.MainFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static org.dam.Controllers.FormPanelController.CREAR;
+
 public class MainFrameController implements ActionListener {
     public static final String INICIO = "INICIO", CREATE = "CREATE", QUERY = "QUERY", NAVIGATE_INICIO = "NAVIGATE_INICIO", NAVIGATE_CREATE = "NAVIGATE_CREATE", NAVIGATE_QUERY = "NAVIGATE_QUERY";
     private MainFrame mainFrame;
@@ -27,6 +29,7 @@ public class MainFrameController implements ActionListener {
                 break;
             }
             case NAVIGATE_CREATE: {
+                mainFrame.getFormPanel().setModel(CREAR);
                 handleNavigateTo(CREATE);
                 break;
             }

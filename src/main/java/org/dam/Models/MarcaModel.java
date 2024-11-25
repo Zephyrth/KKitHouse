@@ -1,5 +1,7 @@
 package org.dam.Models;
 
+import java.util.Objects;
+
 public class MarcaModel {
     private int id_Marca;
     private String nombre;
@@ -10,6 +12,19 @@ public class MarcaModel {
     public MarcaModel(int id_Marca, String nombre) {
         this.id_Marca = id_Marca;
         this.nombre = nombre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MarcaModel that = (MarcaModel) o;
+        return id_Marca == that.id_Marca && Objects.equals(nombre, that.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_Marca, nombre);
     }
 
     @Override

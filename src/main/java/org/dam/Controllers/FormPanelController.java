@@ -15,10 +15,11 @@ import static org.dam.XML.XMLManager.getMueble;
 
 
 public class FormPanelController implements ActionListener, FocusListener, KeyListener {
-    public static final String CREAR = "Crear", LIMPIAR = "Limpiar";
+    public static final String CREAR = "Crear", LIMPIAR = "Limpiar", ACTUALIZAR = "ACTUALIZAR";
     private FormPanel formPanel;
 
     public FormPanelController(FormPanel formPanel) {
+
         this.formPanel = formPanel;
         handleComboBoxs();
 
@@ -113,6 +114,7 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
             case LIMPIAR: {
                 clearFormPanel();
                 break;
+
             }
         }
     }

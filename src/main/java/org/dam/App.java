@@ -8,6 +8,7 @@ import org.dam.Controllers.QueryPanelController;
 import org.dam.Models.MarcaModel;
 import org.dam.Models.MaterialModel;
 import org.dam.Models.MuebleModel;
+import org.dam.Views.EditProductJDialog;
 import org.dam.Views.MainFrame;
 import org.dam.Views.QueryPanel;
 import org.dam.XML.XMLManager;
@@ -44,6 +45,7 @@ public class App {
         FormPanelController formPanelController = new FormPanelController(frame.getFormPanel());
         ImagenPanelController imagenPanelController = new ImagenPanelController(frame.getFormPanel().getImagenPanel());
         QueryPanelController queryPanelController = new QueryPanelController(frame.getQueryPanel());
+
 
         frame.addListeners(mainController);
         frame.getFormPanel().addActionListeners(formPanelController);

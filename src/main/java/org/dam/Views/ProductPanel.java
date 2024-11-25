@@ -4,6 +4,8 @@ import org.dam.Models.MuebleModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 public class ProductPanel extends JPanel {
     private JPanel mainPanel;
@@ -20,6 +22,7 @@ public class ProductPanel extends JPanel {
 
     public ProductPanel() {
         add(mainPanel);
+
     }
 
     public void setBackground(String rutaImagen) {
@@ -35,10 +38,25 @@ public class ProductPanel extends JPanel {
         lb_fecha.setText(String.valueOf(mueble.getDate()));
         lb_marca.setText(mueble.getMarcaModel().getNombre());
         lb_material.setText(mueble.getMaterialModel().getNombre());
+        System.out.println(mueble.getMaterialModel().getNombre());
         lb_precio.setText(String.valueOf(mueble.getPrecio()));
         lb_cantidad.setText(String.valueOf(mueble.getStock()));
         lb_exterior.setText(mueble.isIs_Exterior() ? "SI" : "NO");
         setBackground(mueble.getImagenPath());
+
+    }
+    public MuebleModel getMueble() {
+        return mueble;
+    }
+
+    private void setCommand() {
+
+
+    }
+
+    // llamar desde el main
+    public void addListeners(MouseListener listener) {
+        mainPanel.addMouseListener(listener);
 
     }
 }

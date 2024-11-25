@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class QueryPanelController implements ActionListener {
     private QueryPanel queryPanel;
-
+    public static final String BYDATE="bydate";
     public QueryPanelController(QueryPanel queryPanel) {
         this.queryPanel = queryPanel;
         handleCargarTablaProductos();

@@ -32,6 +32,10 @@ public class MainFrame extends JFrame {
         this.queryPanel = queryPanel;
     }
 
+    public void setFormPanel(FormPanel formPanel) {
+        this.formPanel = formPanel;
+    }
+
     private void addPanels() {
         //Obtener layout para navegar
         navegador = (CardLayout) containerPanels.getLayout();
@@ -42,7 +46,9 @@ public class MainFrame extends JFrame {
         formPanel = new FormPanel();
         formPanel.setBackground("/backgroundForm.png");
 
-        queryPanel = new QueryPanel();
+        queryPanel = new QueryPanel(formPanel);
+
+
 
 
         containerPanels.add(initPanel, INICIO);
@@ -53,7 +59,7 @@ public class MainFrame extends JFrame {
     public void initWindow() {
         setContentPane(mainFrame);
         pack();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
         setLocationRelativeTo(null);
         setCommands();
         initComponents();

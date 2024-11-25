@@ -14,8 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 
-import static org.dam.Controllers.FormPanelController.CREAR;
-import static org.dam.Controllers.FormPanelController.LIMPIAR;
+import static org.dam.Controllers.FormPanelController.*;
 
 
 public class FormPanel extends JPanel {
@@ -44,12 +43,14 @@ public class FormPanel extends JPanel {
     private ImagenPanel imagenPanel;
     private Image background;
 
+    public static final String EDIT_MODE = "edit_mode", CREATE_MODE = "create_mode";
+
     public FormPanel() {
         add(mainPanel);
         setCommand();
         mainPanel.setOpaque(false);
         setImagenPanel();
-        initComponents();
+
     }
 
 
@@ -84,14 +85,49 @@ public class FormPanel extends JPanel {
         return mueble;
     }
 
+    public void setMueble(MuebleModel mueble) {
+        tx_idMueble.setText(String.valueOf(mueble.getId_Mueble()));
+        tx_nombre.setText(mueble.getNombre());
+        tx_cantidad.setText(String.valueOf(mueble.getStock()));
+        tx_precio.setText(String.valueOf(mueble.getPrecio()));
+        chk_exterior.setSelected(mueble.isIs_Exterior());
+        dp_fecha.setDate(mueble.getDate());
+        handleSetMaterial(mueble.getMaterialModel());
+        handleSetMarca(mueble.getMarcaModel());
+        imagenPanel.setBackground(mueble.getImagenPath());
+    }
+
     public void loadCombos(ArrayList<MarcaModel> marca, ArrayList<MaterialModel> material) {
         cb_marca.setModel(new DefaultComboBoxModel(marca.toArray()));
         list_material.setModel(new DefaultComboBoxModel(material.toArray()));
     }
 
+    private void handleSetMarca(MarcaModel model) {
+        ComboBoxModel<MarcaModel> modelMarca = cb_marca.getModel();
+        for (int i = 0; i < modelMarca.getSize(); i++) {
+            MarcaModel marcaModel = modelMarca.getElementAt(i);
+            if (marcaModel.getNombre().equals(model.getNombre())) {
+                cb_marca.setSelectedItem(marcaModel);
+                break;
+            }
+        }
+    }
+    private void handleSetMaterial(MaterialModel material ){
+        ListModel<MaterialModel> modelMaterial = list_material.getModel();
+        for (int i = 0; i < modelMaterial.getSize(); i++) {
+            MaterialModel materialModel = modelMaterial.getElementAt(i);
+            if (materialModel.getNombre().equals(material.getNombre())) {
+                list_material.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
+
     public ImagenPanel getImagenPanel() {
         return imagenPanel;
     }
+
 
     private void setImagenPanel() {
         imagenPanel = new ImagenPanel();
@@ -108,6 +144,7 @@ public class FormPanel extends JPanel {
         super.paintComponent(g);
         if (background != null) {
             g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+
         }
     }
 
@@ -124,6 +161,19 @@ public class FormPanel extends JPanel {
         tx_idMueble.addKeyListener((KeyListener) listener);
         tx_precio.addKeyListener((KeyListener) listener);
         tx_cantidad.addKeyListener((KeyListener) listener);
+    }
+
+    public void setModel(String mode) {
+        if (mode.equals(ACTUALIZAR)) {
+            btn_create.setText("EDITAR");
+            tx_idMueble.setEditable(false);
+            btn_create.setActionCommand(ACTUALIZAR);
+        } else if (mode.equals(CREAR)) {
+            btn_create.setText("CREAR");
+            initComponents();
+            tx_idMueble.setEditable(true);
+            btn_create.setActionCommand(CREAR);
+        }
     }
 
     public void initComponents() {
