@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class QueryPanelController implements ActionListener, ItemListener, KeyListener {
     private QueryPanel queryPanel;
-    private ArrayList<MuebleModel> muebleModels;
+    private ArrayList<MuebleModel> muebleModels = new ArrayList<>();
     public static final String BYDATE = "bydate";
 
 
@@ -97,18 +97,25 @@ public class QueryPanelController implements ActionListener, ItemListener, KeyLi
         if (e.getStateChange() == ItemEvent.SELECTED) {
             ArrayList<MuebleModel> productList= new ArrayList<>();
             MarcaModel marcaModel = (MarcaModel) e.getItem();
-            for (MuebleModel muebleModel : muebleModels) {
-                if (muebleModel.getMarcaModel().equals(marcaModel)) {
-                    productList.add(muebleModel);
+            if (!muebleModels.isEmpty()) {
+                for (MuebleModel muebleModel : muebleModels) {
+                    if (muebleModel.getMarcaModel().equals(marcaModel)) {
+                        productList.add(muebleModel);
+                    }
                 }
-            }
-            if (productList.isEmpty()) {
-                JOptionPane.showMessageDialog(null,"No se encontro muebles con esas especificaciónes.");
+                if (productList.isEmpty()) {
+                    JOptionPane.showMessageDialog(null,"No se encontro muebles con esas especificaciónes.");
+                }else {
+                    queryPanel.getProductList().removeAll();
+                    queryPanel.setProductPanel(productList);
+                    queryPanel.getProductList().revalidate();
+                }
             }else {
-                queryPanel.getProductList().removeAll();
-                queryPanel.setProductPanel(productList);
-                queryPanel.getProductList().revalidate();
+                JOptionPane.showMessageDialog(null,"Busque por palabra clave antes.");
+
             }
+
+
         }
     }
 

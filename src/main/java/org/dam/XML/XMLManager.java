@@ -304,68 +304,51 @@ public class XMLManager implements Exceptions {
         }
         return null;
     }
-
-    public static boolean updateMueble(int id_mueble, MuebleModel muebleModel) throws Exception {
-        Document document = loadOrCreateXML();
-        if (document == null) {
-            throw new Exception(ERROR1);
-        }
-        MuebleModel mueble = getMueble(id_mueble);
-        if (mueble == null) {
-            throw new Exception(ERROR10 + " id: " + id_mueble);
-        }
-        MarcaModel marcaModel = getMarcaModel(muebleModel.getMarcaModel().getId_Marca());
-        if (marcaModel == null) {
-            throw new Exception(ERROR3 + "La marca: " + muebleModel.getMarcaModel().getNombre() + " no existe.");
-        }
-        MaterialModel materialModel = getMaterialModel(muebleModel.getMaterialModel().getId_Material());
-        if (materialModel == null) {
-            throw new Exception(ERROR2 + "El material: " + muebleModel.getMaterialModel().getNombre() + " no existe.");
-        }
-
-        try {
-            NodeList muebleNodelist = document.getElementsByTagName("Mueble");
-            if (muebleNodelist.getLength() > 0) {
-                for (int i = 0; i < muebleNodelist.getLength(); i++) {
-                    Element muebleElement = (Element) muebleNodelist.item(i);
-                    muebleElement.setAttribute("nombre", muebleModel.getNombre());
-                    muebleElement.setAttribute("id_material", String.valueOf(muebleModel.getMaterialModel().getId_Material()));
-                    muebleElement.setAttribute("precio", String.valueOf(muebleModel.getPrecio()));
-                    muebleElement.setAttribute("stock", String.valueOf(muebleModel.getStock()));
-                    muebleElement.setAttribute("id_marca", String.valueOf(muebleModel.getMarcaModel().getId_Marca()));
-                    muebleElement.setAttribute("isExterior", String.valueOf(muebleModel.isIs_Exterior()));
-                    muebleElement.setAttribute("fechaFabricacion", String.valueOf(muebleModel.getDate()));
-                    boolean oksave = XMLService.saveXML(document);
-                    if (oksave) {
-                        return true;
-                    } else {
-                        throw new Exception(ERRROR11);
+    public static boolean updateProduct(MuebleModel muebleModel) throws Exception {
+        Document document = XMLService.loadOrCreateXML();
+        if (document != null) {
+            try {
+                NodeList nodeList = document.getElementsByTagName("Mueble");
+                for (int i = 0; i < nodeList.getLength(); i++) {
+                    Element muebleElement = (Element) nodeList.item(i);
+                    String codigo = muebleElement.getAttribute("id");
+                    if (codigo.equals(String.valueOf(muebleModel.getId_Mueble()))) {
+                        muebleElement.setAttribute("nombre", muebleModel.getNombre());
+                        muebleElement.setAttribute("id_material", String.valueOf(muebleModel.getMaterialModel().getId_Material()));
+                        muebleElement.setAttribute("precio", String.valueOf(muebleModel.getPrecio()));
+                        muebleElement.setAttribute("stock", String.valueOf(muebleModel.getStock()));
+                        muebleElement.setAttribute("id_marca", String.valueOf(muebleModel.getMarcaModel().getId_Marca()));
+                        muebleElement.setAttribute("isExterior", String.valueOf(muebleModel.isIs_Exterior()));
+                        muebleElement.setAttribute("fechaFabricacion", String.valueOf(muebleModel.getDate()));
                     }
                 }
+                return XMLService.saveXML(document);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                throw new Exception("1, Error al obtener el producto");
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } else {
+            throw new Exception("2, Error al obtener el documento");
         }
-        throw new Exception(ERROR12);
-    }
 
-    public static boolean removeMuebleById(String id, String name) throws Exception {
+    }
+    public static boolean removeById(String id) throws Exception {
         Document document = XMLService.loadOrCreateXML();
         if (document == null) {
-            throw new Exception(ERROR1);
+            throw new Exception("2. No se encontro el document xml");
         }
-        if (id == null && name == null) {
-            throw new Exception(ERROR13);
+        if (id == null) {
+            throw new Exception("1.Error al seleccionar el mueble");
         }
         try {
             NodeList nodeList = document.getElementsByTagName("Mueble");
             if (nodeList.getLength() == 0) {
-                throw new Exception(ERROR10);
+                throw new Exception("Error al intentar obtener el mueble");
             }
             for (int i = 0; i < nodeList.getLength(); i++) {
-                Element filmElement = (Element) nodeList.item(i);
-                if (filmElement.getAttribute("nombre").equals(name) || filmElement.getAttribute("id").equals(id)) {
-                    filmElement.getParentNode().removeChild(filmElement);
+                Element muebleElement = (Element) nodeList.item(i);
+                if ( muebleElement.getAttribute("id").equals(id)) {
+                    muebleElement.getParentNode().removeChild(muebleElement);
                     return XMLService.saveXML(document);
                 }
             }

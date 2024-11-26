@@ -59,6 +59,22 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
 
     }
 
+    private void handleUpdateProduct() {
+        try {
+            String rutaImagen;
+            MuebleModel muebleModel = formPanel.getMueble();
+            rutaImagen = FileUtils.guardarImagen(formPanel.getImagenPanel().getRutaImagenOriginal(),
+                    String.valueOf(formPanel.getMueble().getId_Mueble()));
+            muebleModel.setImagenPath(rutaImagen);
+            if (XMLManager.updateProduct(muebleModel)) {
+                JOptionPane.showMessageDialog(null, "Producto Actualizado correctamente");
+            }
+
+        } catch (Exception e) {
+            formPanel.setLb_warning(e.getMessage());
+        }
+    }
+
     private void handleComboBoxs() {
         try {
             formPanel.loadCombos(XMLManager.getMarcaModelsForCombo(), XMLManager.getMarcaMaterialForCombo());
@@ -69,34 +85,39 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
 
     private void handleLostFocus(FocusEvent o) {
         Object source = o.getComponent();
-        if (source.getClass().equals(JTextField.class) && ((JTextField) source).getText().equalsIgnoreCase("")) {
-            JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.red);
-        }
-        if (((JTextField) source).getName().equalsIgnoreCase("idMueble") && !((JTextField) source).getText().equalsIgnoreCase("")) {
-            try {
-                MuebleModel muebleModel = getMueble(Integer.valueOf(((JTextField) source).getText().toString()));
-                if (muebleModel != null) {
-                    JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.red);
-                    formPanel.setLb_warning("La id : " + ((JTextField) source).getText() + " ya existe.");
-                } else {
-                    JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
-                    formPanel.setLb_warning("");
+        if (((JTextField) source).getName()!=null){
+            if (source.getClass().equals(JTextField.class) && ((JTextField) source).getText().equalsIgnoreCase("")) {
+                JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.red);
+            }
+            if (((JTextField) source).getName().equalsIgnoreCase("idMueble") && !((JTextField) source).getText().equalsIgnoreCase("")) {
+                try {
+                    MuebleModel muebleModel = getMueble(Integer.valueOf(((JTextField) source).getText().toString()));
+                    if (muebleModel != null) {
+                        JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.red);
+                        formPanel.setLb_warning("La id : " + ((JTextField) source).getText() + " ya existe.");
+                    } else {
+                        JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
+                        formPanel.setLb_warning("");
+                    }
+                } catch (NumberFormatException e) {
+                    formPanel.setLb_warning("La id: " + ((JTextField) source).getText() + " supera los 7 digitos.");
+                } catch (Exception ex) {
+                    formPanel.setLb_warning(ex.getMessage());
                 }
-            } catch (NumberFormatException e) {
-                formPanel.setLb_warning("La id: " + ((JTextField) source).getText() + " supera los 7 digitos.");
-            } catch (Exception ex) {
-                formPanel.setLb_warning(ex.getMessage());
             }
         }
     }
 
     private void handleGainFocus(FocusEvent o) {
         Object source = o.getComponent();
-        if (source.getClass().equals(JTextField.class) && ((JTextField) source).getName().equalsIgnoreCase("idMueble")) {
-            JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
-        } else if (source.getClass().equals(JTextField.class) && ((JTextField) source).getName().equalsIgnoreCase("Name")) {
-            JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
+        if (((JTextField) source).getName()!=null){
+            if (source.getClass().equals(JTextField.class) && ((JTextField) source).getName().equalsIgnoreCase("idMueble")) {
+                JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
+            } else if (source.getClass().equals(JTextField.class) && ((JTextField) source).getName().equalsIgnoreCase("Name")) {
+                JTextFieldBorderColorUtil.setJTextFieldBorderColorUtil((JTextField) source, Color.lightGray);
+            }
         }
+
     }
 
     private void clearFormPanel() {
@@ -111,6 +132,9 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
             case CREAR:
                 handleCreateMueble();
                 break;
+            case ACTUALIZAR: {
+                handleUpdateProduct();
+            }
             case LIMPIAR: {
                 clearFormPanel();
                 break;

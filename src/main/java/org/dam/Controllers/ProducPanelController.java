@@ -1,6 +1,7 @@
 package org.dam.Controllers;
 
 import org.dam.Views.*;
+import org.dam.XML.XMLManager;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -49,8 +50,11 @@ public class ProducPanelController implements MouseListener {
             } else if (rec == 1) {
                 int response = JOptionPane.showConfirmDialog(null, "¿Realmente quieres borrarlo?");
                 if (response == JOptionPane.YES_OPTION) {
-
-                    System.out.println("Se borra al final");
+                    try {
+                        XMLManager.removeById(String.valueOf(panel.getMueble().getId_Mueble()));
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 } else {
                     System.out.println("no se borra");
                 }
