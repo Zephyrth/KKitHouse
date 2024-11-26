@@ -156,6 +156,77 @@ public class XMLManager implements Exceptions {
         }
     }
 
+    public static ArrayList<MuebleModel> getMueblesByTxtField(String claveString) throws Exception {
+        ArrayList<MuebleModel> muebleModels = new ArrayList<>();
+
+        Document document = XMLService.loadOrCreateXML();
+        if (document == null) {
+            throw new Exception(ERROR1);
+        }
+        if (claveString.isEmpty()) {
+            return getMuebles();
+        }else {
+            claveString = claveString.toLowerCase();
+        }
+        try {
+            NodeList muebleNodeList = document.getElementsByTagName("Mueble");
+            for (int i = 0; i < muebleNodeList.getLength(); i++) {
+                Element muebleElement = (Element) muebleNodeList.item(i);
+                MuebleModel option = new MuebleModel(
+                        Integer.parseInt(muebleElement.getAttribute("id")),
+                        Integer.parseInt(muebleElement.getAttribute("stock")),
+                        Double.parseDouble(muebleElement.getAttribute("precio")),
+                        muebleElement.getAttribute("nombre"),
+                        getMaterialModel(Integer.parseInt(muebleElement.getAttribute("id_material"))),
+                        getMarcaModel(Integer.parseInt(muebleElement.getAttribute("id_marca"))),
+                        LocalDate.parse(muebleElement.getAttribute("fechaFabricacion")),
+                        Boolean.parseBoolean(muebleElement.getAttribute("isExterior")),
+                        muebleElement.getAttribute("imagenPath")
+                );
+                if ((option.getMaterialModel().getNombre().toLowerCase().contains(claveString) ||
+                        option.getMarcaModel().getNombre().toLowerCase().contains(claveString) ||
+                        option.getNombre().toLowerCase().contains(claveString))
+                        && !muebleModels.contains(option)) {
+                    muebleModels.add(option);
+                }
+
+            }
+            return muebleModels;
+        } catch (Exception e) {
+            throw new Exception(ERROR7);
+        }
+    }
+
+    public static ArrayList<MuebleModel> getMueblesByDate(LocalDate inicio, LocalDate fin) throws Exception {
+        ArrayList<MuebleModel> muebleModels = new ArrayList<>();
+        Document document = XMLService.loadOrCreateXML();
+        if (document == null) {
+            throw new Exception(ERROR1);
+        }
+
+        try {
+            NodeList muebleNodeList = document.getElementsByTagName("Mueble");
+            for (int i = 0; i < muebleNodeList.getLength(); i++) {
+                Element muebleElement = (Element) muebleNodeList.item(i);
+                LocalDate fechaFabricacion = LocalDate.parse(muebleElement.getAttribute("fechaFabricacion"));
+                if ((fechaFabricacion.isEqual(inicio) || fechaFabricacion.isAfter(inicio))
+                        && (fechaFabricacion.isEqual(fin) || fechaFabricacion.isBefore(fin))) {
+                    muebleModels.add(new MuebleModel(Integer.parseInt(muebleElement.getAttribute("id")), Integer.parseInt(muebleElement.getAttribute("stock")),
+                            Double.parseDouble(muebleElement.getAttribute("precio")), muebleElement.getAttribute("nombre"),
+                            getMaterialModel(Integer.parseInt(muebleElement.getAttribute("id_material"))),
+                            getMarcaModel(Integer.parseInt(muebleElement.getAttribute("id_marca"))),
+                            LocalDate.parse(muebleElement.getAttribute("fechaFabricacion")),
+                            Boolean.parseBoolean(muebleElement.getAttribute("isExterior")), muebleElement.getAttribute("imagenPath")));
+
+                }
+            }
+            return muebleModels;
+        } catch (
+                Exception e) {
+            throw new Exception(ERROR7);
+        }
+    }
+
     public static MarcaModel getMarcaModel(int id_marca) throws Exception {
         Document document = loadOrCreateXML();
         if (document == null) {

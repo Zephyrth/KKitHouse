@@ -1,6 +1,7 @@
 package org.dam.Models;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class MuebleModel {
 
@@ -104,6 +105,19 @@ public class MuebleModel {
 
     public void setMarcaModel(MarcaModel marcaModel) {
         this.marcaModel = marcaModel;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MuebleModel that = (MuebleModel) o;
+        return id_Mueble == that.id_Mueble && stock == that.stock && Double.compare(precio, that.precio) == 0 && is_Exterior == that.is_Exterior && Objects.equals(nombre, that.nombre) && Objects.equals(materialModel, that.materialModel) && Objects.equals(marcaModel, that.marcaModel) && Objects.equals(date, that.date) && Objects.equals(imagenPath, that.imagenPath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_Mueble, stock, precio, nombre, materialModel, marcaModel, date, is_Exterior, imagenPath);
     }
 
     public LocalDate getDate() {

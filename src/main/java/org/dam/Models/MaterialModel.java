@@ -1,5 +1,7 @@
 package org.dam.Models;
 
+import java.util.Objects;
+
 public class MaterialModel {
     private int id_Material;
     private String nombre;
@@ -37,6 +39,19 @@ public class MaterialModel {
 
     public double getPrecio() {
         return precio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MaterialModel that = (MaterialModel) o;
+        return id_Material == that.id_Material && Double.compare(precio, that.precio) == 0 && Objects.equals(nombre, that.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_Material, nombre, precio);
     }
 
     public void setPrecio(double precio) {

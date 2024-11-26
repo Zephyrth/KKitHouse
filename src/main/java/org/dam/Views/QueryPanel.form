@@ -44,6 +44,8 @@
         <rowspec value="center:45px:noGrow"/>
         <rowspec value="top:20px:noGrow"/>
         <rowspec value="center:41px:noGrow"/>
+        <rowspec value="top:82dlu:noGrow"/>
+        <rowspec value="center:max(d;4px):noGrow"/>
         <colspec value="fill:max(d;4px):noGrow"/>
         <colspec value="left:16dlu:noGrow"/>
         <colspec value="fill:76px:noGrow"/>
@@ -56,16 +58,16 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="5072f" class="com.github.lgooddatepicker.components.DatePicker">
+          <component id="5072f" class="com.github.lgooddatepicker.components.DatePicker" binding="dp_inicio">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties/>
           </component>
-          <component id="5c1de" class="com.github.lgooddatepicker.components.DatePicker">
+          <component id="5c1de" class="com.github.lgooddatepicker.components.DatePicker" binding="dp_final">
             <constraints>
-              <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
             <properties/>
@@ -121,6 +123,24 @@
               <forms defaultalign-horz="false"/>
             </constraints>
             <properties/>
+          </component>
+          <component id="68d4d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <text value="INICIO"/>
+            </properties>
+          </component>
+          <component id="86884" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false"/>
+            </constraints>
+            <properties>
+              <text value="FIN"/>
+            </properties>
           </component>
         </children>
       </grid>

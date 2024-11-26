@@ -21,7 +21,9 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         initWindow();
         addPanels();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setCommands();
+
     }
 
     public QueryPanel getQueryPanel() {
