@@ -39,7 +39,7 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
 
         try {
             String rutaImagen;
-            if (!formPanel.getImagenPanel().getRutaImagenOriginal().equals("src/images/default.png")) {
+            if (!formPanel.getImagenPanel().getRutaImagenOriginal().equals("default")) {
                 rutaImagen = FileUtils.guardarImagen(formPanel.getImagenPanel().getRutaImagenOriginal(),
                         String.valueOf(formPanel.getMueble().getId_Mueble()));
             } else {

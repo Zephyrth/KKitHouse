@@ -49,7 +49,7 @@ public class QueryPanelController implements ActionListener, ItemListener, KeyLi
         HashMap<String, LocalDate> fecha = null;
         fecha = queryPanel.getFechas();
         if (fecha == null) {
-            throw new RuntimeException("No puedes buscar sin ninguna fecha");
+            JOptionPane.showMessageDialog(null, "No puedes buscar sin ninguna fecha.");
         } else {
             if (fecha.get("inicio").isBefore(fecha.get("final"))||fecha.get("final").isEqual(fecha.get("inicio"))) {
                 try {

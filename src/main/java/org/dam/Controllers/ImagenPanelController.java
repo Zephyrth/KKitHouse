@@ -19,13 +19,8 @@ public class ImagenPanelController implements ActionListener {
     }
 
     public void setDefaultBackgroundImage() {
-        try {
-            String rutaImagen = URLDecoder.decode(getClass().getResource("/default.png").getPath(), "UTF-8");
-            imagenPanel.setBackground(rutaImagen);
-            imagenPanel.setRutaImagenOriginal(rutaImagen);
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("No se encontró el recurso indicado");
-        }
+        imagenPanel.setBackground("default");
+        imagenPanel.setRutaImagenOriginal("default");
     }
 
     private void handleSelectImage() {

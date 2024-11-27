@@ -74,7 +74,7 @@
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

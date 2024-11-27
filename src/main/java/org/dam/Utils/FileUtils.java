@@ -60,6 +60,10 @@ public class FileUtils {
     // Método estático para abrir el selector de archivos y guardar la imagen reescalada
     public static String guardarImagen(String rutaImagen,String nombre) {
 
+        if (rutaImagen.equals("default")) {
+            return rutaImagen;
+        }
+
         String path = System.getProperty("user.home") + "\\" + PROJECT_NAME + "\\images";
         File carpetaDestino = new File(path);
         if (!carpetaDestino.exists()) {

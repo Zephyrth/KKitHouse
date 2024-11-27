@@ -26,8 +26,18 @@ public class ProductPanel extends JPanel {
     }
 
     public void setBackground(String rutaImagen) {
+        if (rutaImagen.equals("default")) {
+            setDefaultBackgroundImage();
+            return;
+        }
         ImageIcon icon = new ImageIcon(rutaImagen);
         Image imagenEscalada = icon.getImage().getScaledInstance(190, 190, Image.SCALE_SMOOTH);
+        lb_img.setIcon(new ImageIcon(imagenEscalada));
+    }
+
+    public void setDefaultBackgroundImage() {
+        Image imagenEscalada = new ImageIcon(getClass().getResource("/default.png"))
+                .getImage().getScaledInstance(162, 162, Image.SCALE_SMOOTH);
         lb_img.setIcon(new ImageIcon(imagenEscalada));
     }
 

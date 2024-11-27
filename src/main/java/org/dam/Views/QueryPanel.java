@@ -32,6 +32,7 @@ public class QueryPanel extends JPanel {
     private JComboBox cb_marca;
     private DatePicker dp_inicio;
     private DatePicker dp_final;
+    private JButton btn_reset;
     private FormPanel formPanel;
 
     public QueryPanel(FormPanel formPanel) {

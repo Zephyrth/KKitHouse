@@ -132,7 +132,7 @@ public class FormPanel extends JPanel {
     private void setImagenPanel() {
         imagenPanel = new ImagenPanel();
         imagenPreviewPanel.add(imagenPanel);
-        imagenPanel.setRutaImagenOriginal("src/images/default.png");
+        imagenPanel.setRutaImagenOriginal("default");
     }
 
     public void setBackground(String path) {
@@ -187,15 +187,8 @@ public class FormPanel extends JPanel {
         tx_nombre.setText("");
         tx_cantidad.setText("");
         dp_fecha.setDate(null);
-        String rutaImagen = null;
-        try {
-            rutaImagen = URLDecoder.decode(getClass().getResource("/default.png").getPath(), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-        imagenPanel.setBackground(rutaImagen);
-        imagenPanel.setRutaImagenOriginal(rutaImagen);
-
+        imagenPanel.setBackground("default");
+        imagenPanel.setRutaImagenOriginal("default");
 
     }
 

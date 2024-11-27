@@ -61,7 +61,6 @@ public class MainFrame extends JFrame {
     public void initWindow() {
         setContentPane(mainFrame);
         pack();
-        
         setLocationRelativeTo(null);
         setCommands();
         initComponents();

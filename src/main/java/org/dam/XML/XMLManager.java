@@ -320,6 +320,7 @@ public class XMLManager implements Exceptions {
                         muebleElement.setAttribute("id_marca", String.valueOf(muebleModel.getMarcaModel().getId_Marca()));
                         muebleElement.setAttribute("isExterior", String.valueOf(muebleModel.isIs_Exterior()));
                         muebleElement.setAttribute("fechaFabricacion", String.valueOf(muebleModel.getDate()));
+                        muebleElement.setAttribute("imagenPath", String.valueOf(muebleModel.getImagenPath()));
                     }
                 }
                 return XMLService.saveXML(document);

@@ -50,7 +50,6 @@
         <colspec value="left:16dlu:noGrow"/>
         <colspec value="fill:76px:noGrow"/>
         <colspec value="left:179px:noGrow"/>
-        <colspec value="fill:18px:noGrow"/>
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-vert="false"/>
@@ -75,7 +74,7 @@
           <component id="9185c" class="javax.swing.JButton" binding="btn_byDate">
             <constraints>
               <grid row="6" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+              <forms top="0" left="40" bottom="0" right="0" defaultalign-horz="false" defaultalign-vert="false"/>
             </constraints>
             <properties>
               <text value="BUSCAR"/>
@@ -140,6 +139,15 @@
             </constraints>
             <properties>
               <text value="FIN"/>
+            </properties>
+          </component>
+          <component id="38db1" class="javax.swing.JButton" binding="btn_reset">
+            <constraints>
+              <grid row="13" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <text value="RESET"/>
             </properties>
           </component>
         </children>
