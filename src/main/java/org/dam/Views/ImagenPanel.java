@@ -3,6 +3,7 @@ package org.dam.Views;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import static org.dam.Controllers.ImagenPanelController.CLEAR;
 import static org.dam.Controllers.ImagenPanelController.SELECT;
@@ -58,6 +59,7 @@ public class ImagenPanel extends JPanel {
     public void addActionListeners(ActionListener listener) {
         btn_clear.addActionListener(listener);
         btn_seleccionar.addActionListener(listener);
+        lb_img.addMouseListener((MouseListener) listener);
 
     }
 }

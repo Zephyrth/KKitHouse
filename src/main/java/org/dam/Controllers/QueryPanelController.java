@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class QueryPanelController implements ActionListener, ItemListener, KeyListener {
     private QueryPanel queryPanel;
     private ArrayList<MuebleModel> muebleModels = new ArrayList<>();
-    public static final String BYDATE = "bydate";
+    public static final String BYDATE = "bydate",RESET = "reset";
 
 
     public QueryPanelController(QueryPanel queryPanel) {
@@ -76,6 +76,7 @@ public class QueryPanelController implements ActionListener, ItemListener, KeyLi
         handleCargarTablaProductos();
         queryPanel.getProductList().revalidate();
         queryPanel.setSelected(-1);
+
     }
 
     @Override
@@ -86,12 +87,14 @@ public class QueryPanelController implements ActionListener, ItemListener, KeyLi
                 handleGetProductoByDate();
                 break;
             }
+            case RESET: {
+                handleInitForm();
+            }
             default: {
                 break;
             }
         }
     }
-
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {

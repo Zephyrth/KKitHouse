@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import static org.dam.Controllers.QueryPanelController.BYDATE;
+import static org.dam.Controllers.QueryPanelController.RESET;
 
 public class QueryPanel extends JPanel {
     private JPanel mainPanel;
@@ -75,11 +76,13 @@ public class QueryPanel extends JPanel {
 
     private void setCommand() {
         btn_byDate.setActionCommand(BYDATE);
+        btn_reset.setActionCommand(RESET);
     }
 
     // llamar desde el main
     public void addListeners(ActionListener listener) {
         btn_byDate.addActionListener(listener);
+        btn_reset.addActionListener(listener);
         cb_marca.addItemListener((ItemListener) listener);
         tx_all.addKeyListener((KeyListener) listener);
     }

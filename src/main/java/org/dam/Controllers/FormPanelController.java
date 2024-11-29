@@ -48,7 +48,9 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
             if (rutaImagen != null) {
                 MuebleModel muebleModel = formPanel.getMueble();
                 muebleModel.setImagenPath(rutaImagen);
-                XMLManager.createMueble(muebleModel);
+                if (XMLManager.createMueble(muebleModel)){
+                    formPanel.initComponents();
+                }
             }
 
         } catch (Exception e) {
@@ -156,7 +158,6 @@ public class FormPanelController implements ActionListener, FocusListener, KeyLi
     @Override
     public void keyTyped(KeyEvent e) {
         char c = e.getKeyChar();
-
         if (!Character.isDigit(c)) {
             e.consume();
         }

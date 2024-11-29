@@ -58,13 +58,15 @@ public class FormPanel extends JPanel {
         this.lb_warning.setText(warning);
     }
 
+
     public MuebleModel getMueble() throws Exception {
         MuebleModel mueble = new MuebleModel();
         if (tx_idMueble.getText().toString().equals("")
                 || tx_nombre.getText().toString().equals("")
                 || tx_cantidad.getText().toString().equals("")
                 || dp_fecha.getText().toString().equals("")
-                || list_material.getSelectedIndex() == -1) {
+                || list_material.getSelectedIndex() == -1
+                || cb_marca.getSelectedIndex() == -1) {
             throw new Exception("NO DEJE NINGÚN CAMPO VACIO");
         } else if (tx_idMueble.getText().toString().length() > 7) {
             throw new Exception("EL ID NO DEBE SER MAS DE 7 CARACTERES");
@@ -112,7 +114,8 @@ public class FormPanel extends JPanel {
             }
         }
     }
-    private void handleSetMaterial(MaterialModel material ){
+
+    private void handleSetMaterial(MaterialModel material) {
         ListModel<MaterialModel> modelMaterial = list_material.getModel();
         for (int i = 0; i < modelMaterial.getSize(); i++) {
             MaterialModel materialModel = modelMaterial.getElementAt(i);
@@ -187,8 +190,11 @@ public class FormPanel extends JPanel {
         tx_nombre.setText("");
         tx_cantidad.setText("");
         dp_fecha.setDate(null);
+        list_material.setSelectedIndex(-1);
+        cb_marca.setSelectedIndex(-1);
         imagenPanel.setBackground("default");
         imagenPanel.setRutaImagenOriginal("default");
+        lb_warning.setText("");
 
     }
 

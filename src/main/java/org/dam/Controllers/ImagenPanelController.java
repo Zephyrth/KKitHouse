@@ -5,10 +5,12 @@ import org.dam.Views.ImagenPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-public class ImagenPanelController implements ActionListener {
+public class ImagenPanelController implements ActionListener, MouseListener {
 
     private final ImagenPanel imagenPanel;
     public static final String SELECT = "SELECT", CLEAR = "CLEAR";
@@ -49,5 +51,33 @@ public class ImagenPanelController implements ActionListener {
                 break;
             }
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            handleSelectImage();
+        }
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

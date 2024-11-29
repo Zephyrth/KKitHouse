@@ -51,6 +51,8 @@ public class ProductPanel extends JPanel {
         lb_precio.setText(String.valueOf(mueble.getPrecio()));
         lb_cantidad.setText(String.valueOf(mueble.getStock()));
         lb_exterior.setText(mueble.isIs_Exterior() ? "SI" : "NO");
+        mueble.setImagenPath(mueble.getImagenPath());
+
         setBackground(mueble.getImagenPath());
 
     }

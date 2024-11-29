@@ -122,7 +122,7 @@ public class XMLManager implements Exceptions {
                             getMaterialModel(Integer.parseInt(muebleElement.getAttribute("id_material"))),
                             getMarcaModel(Integer.parseInt(muebleElement.getAttribute("id_marca"))),
                             LocalDate.parse(muebleElement.getAttribute("fechaFabricacion")),
-                            Boolean.parseBoolean(muebleElement.getAttribute("isExterior")));
+                            Boolean.parseBoolean(muebleElement.getAttribute("isExterior")),muebleElement.getAttribute("imagenPath"));
                 }
             }
         } catch (Exception e) {
