@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Store>
     <Muebles>
-
+        <Mueble fechaFabricacion="2024-11-15" id="2" id_marca="1" id_material="5" imagenPath="default" isExterior="true"
+                nombre="Silla de Jardín" precio="250.0" stock="120"/>
+        <Mueble fechaFabricacion="2024-10-05" id="3" id_marca="2" id_material="4" imagenPath="default"
+                isExterior="false" nombre="Sofá Premium" precio="800.0" stock="45"/>
+        <Mueble fechaFabricacion="2024-09-22" id="4" id_marca="4" id_material="2" imagenPath="default" isExterior="true"
+                nombre="Mesa Abedul" precio="150.0" stock="300"/>
+        <Mueble fechaFabricacion="2024-12-01" id="5" id_marca="5" id_material="3" imagenPath="default" isExterior="true"
+                nombre="Banco Contrachapado" precio="120.0" stock="500"/>
+        <Mueble fechaFabricacion="2024-08-10" id="6" id_marca="3" id_material="1" imagenPath="default"
+                isExterior="false" nombre="Estantería Plástica" precio="100.0" stock="200"/>
+        <Mueble fechaFabricacion="2024-07-20" id="7" id_marca="2" id_material="5" imagenPath="default"
+                isExterior="false" nombre="Cama Pino" precio="450.0" stock="30"/>
+        <Mueble fechaFabricacion="2024-06-18" id="8" id_marca="4" id_material="3" imagenPath="default" isExterior="true"
+                nombre="Taburete Rústico" precio="75.0" stock="700"/>
+        <Mueble fechaFabricacion="2024-05-12" id="9" id_marca="1" id_material="4" imagenPath="default"
+                isExterior="false" nombre="Colchón Viscoelástico" precio="1100.0" stock="20"/>
     </Muebles>
     <Materiales>
-        <Material id="1" nombre="plastico" precio="14.5"/>
-        <Material id="2" nombre="abedul" precio="14.5"/>
-        <Material id="3" nombre="contrachapado" precio="14.5"/>
-        <Material id="4" nombre="" precio="14.5"/>
-        <Material id="5" nombre="pino" precio="14.5"/>
+        <Material id="1" nombre="Plástico" precio="10.5"/>
+        <Material id="2" nombre="Abedúl" precio="2.8"/>
+        <Material id="3" nombre="Contrachapado" precio="6.5"/>
+        <Material id="4" nombre="ViscoElástico" precio="24.5"/>
+        <Material id="5" nombre="Pino" precio="3.5"/>
     </Materiales>
     <Marcas>
-        <Marca id="1" nombre="test1"/>
-        <Marca id="2" nombre="test2"/>
-        <Marca id="3" nombre="test3"/>
-        <Marca id="4" nombre="Cualquiera"/>
+        <Marca id="1" nombre="IKEA"/>
+        <Marca id="2" nombre="Herman Miller"/>
+        <Marca id="3" nombre="Made Trade"/>
+        <Marca id="4" nombre="Coppel"/>
+        <Marca id="5" nombre="Wayfair"/>
     </Marcas>
 </Store>

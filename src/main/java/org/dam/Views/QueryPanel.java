@@ -52,6 +52,9 @@ public class QueryPanel extends JPanel {
             productList.add(productPanel);
         }
     }
+    public void clerTextAll(){
+        tx_all.setText("");
+    }
     public String getTextAll(){
         return tx_all.getText();
     }

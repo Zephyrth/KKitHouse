@@ -12,35 +12,26 @@ import static org.dam.Controllers.FormPanelController.ACTUALIZAR;
 public class ProducPanelController implements MouseListener {
     private ProductPanel panel;
     private EditProductJDialog productDialog;
-    private FormPanel formPanel;
-
-
     public ProducPanelController(ProductPanel panel, FormPanel formPanel) {
         this.panel = panel;
-        this.formPanel = formPanel;
-
-
     }
 
     private void handleShowEditProduct() {
         FormPanel formEdit = new FormPanel();
         FormPanelController formPanelController = new FormPanelController(formEdit);
-        ImagenPanel imagenPanel =formEdit.getImagenPanel();
+        ImagenPanel imagenPanel = formEdit.getImagenPanel();
         ImagenPanelController imagenPanelController = new ImagenPanelController(imagenPanel);
         imagenPanel.addActionListeners(imagenPanelController);
         formEdit.addActionListeners(formPanelController);
         formEdit.setModel(ACTUALIZAR);
         formEdit.setBackground("/backgroundForm.png");
         formEdit.setMueble(panel.getMueble());
+        formEdit.getImagenPanel().setRutaImagenOriginal(panel.getMueble().getImagenPath());
         productDialog = new EditProductJDialog(formEdit);
         productDialog.showWindows();
-
-
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
-
         String[] valores = new String[]{"EDITAR", "BORRAR"};
         if (e.getClickCount() == 2) {
             int rec = JOptionPane.showOptionDialog(null, "Que desea realizar", "Modo Edición", 0, 2,
@@ -60,7 +51,6 @@ public class ProducPanelController implements MouseListener {
                 }
             }
         }
-
     }
 
     @Override

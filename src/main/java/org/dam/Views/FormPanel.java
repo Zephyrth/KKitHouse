@@ -76,7 +76,7 @@ public class FormPanel extends JPanel {
         mueble.setPrecio(Double.parseDouble(tx_precio.getText()));
         mueble.setIs_Exterior(chk_exterior.isSelected());
         mueble.setDate(dp_fecha.getDate());
-        mueble.setStock(Integer.parseInt(tx_cantidad.getText()));
+        mueble.setStock(sl_precio.getValue());
         mueble.setMaterialModel(list_material.getSelectedValue());
         MarcaModel marca;
         marca = (MarcaModel) cb_marca.getSelectedItem();
@@ -91,6 +91,7 @@ public class FormPanel extends JPanel {
         tx_idMueble.setText(String.valueOf(mueble.getId_Mueble()));
         tx_nombre.setText(mueble.getNombre());
         tx_cantidad.setText(String.valueOf(mueble.getStock()));
+        sl_precio.setValue((int) mueble.getPrecio());
         tx_precio.setText(String.valueOf(mueble.getPrecio()));
         chk_exterior.setSelected(mueble.isIs_Exterior());
         dp_fecha.setDate(mueble.getDate());

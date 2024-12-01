@@ -108,6 +108,8 @@ public class QueryPanelController implements ActionListener, ItemListener, KeyLi
                 }
                 if (productList.isEmpty()) {
                     JOptionPane.showMessageDialog(null,"No se encontro muebles con esas especificaciónes.");
+                    queryPanel.clerTextAll();
+                    handleInitForm();
                 }else {
                     queryPanel.getProductList().removeAll();
                     queryPanel.setProductPanel(productList);
